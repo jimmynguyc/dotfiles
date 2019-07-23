@@ -18,12 +18,13 @@ Plugin 'gmarik/vundle'
 " original repos on github
 Plugin 'matchit.zip'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
 Plugin 'ctrlpvim/ctrlp.vim'
   map <Leader>t :CtrlPBuffer<CR>
   let g:ctrlp_map = '<C-t>'
   let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
   let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v\c\.(git|svn)$|cover_db|vendor/',
+  \ 'dir':  '\v\c\.(git|svn)$|cover_db|vendor|deps|_build|node_modules',
   \ 'file': '\v\c\.(swf|bak|png|gif|mov|ico|jpg|pdf|jrxml)$',
   \ }
 Plugin 'vim-airline/vim-airline'
@@ -49,6 +50,8 @@ Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'tpope/vim-markdown'
 Plugin 'kana/vim-textobj-lastpat'
 Plugin 'elixir-editors/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
+
 
 " vim-scripts repos
 "Bundle 'L9'
@@ -70,7 +73,7 @@ set backspace=indent,eol,start
 set cindent " set smartindent
 set cmdheight=2
 set cursorcolumn
-set cursorline
+set nocursorline
 set errorformat=\"../../%f\"\\,%*[^0-9]%l:\ %m
 set expandtab
 set hidden
@@ -95,6 +98,7 @@ set t_Co=256
 set tags=tags;/
 set virtualedit=block
 set wrap
+set title
 syntax on
 
 highlight   CursorColumn  term=NONE    cterm=none ctermbg=232
@@ -144,8 +148,6 @@ nmap <F1> <Esc>
 imap <F1> <Esc>
 
 autocmd FileType gitcommit autocmd! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-
-set colorcolumn=100,120
 
 if match($TERM, "screen-256color")!=-1
   set term=xterm-256color
