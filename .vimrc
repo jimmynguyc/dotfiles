@@ -10,7 +10,7 @@ set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Plugin 'gmarik/vundle'
 
 " My Bundles here:
@@ -21,7 +21,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'ctrlpvim/ctrlp.vim'
   map <Leader>t :CtrlPBuffer<CR>
-  let g:ctrlp_map = '<C-t>'
   let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
   let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v\c\.(git|svn)$|cover_db|vendor|deps|_build|node_modules',
@@ -44,6 +43,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'airblade/vim-gitgutter'
   set signcolumn=yes
   highlight clear SignColumn
+  let g:gitgutter_async=0
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
@@ -51,7 +51,9 @@ Plugin 'tpope/vim-markdown'
 Plugin 'kana/vim-textobj-lastpat'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
-
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rbenv'
+Plugin 'tpope/vim-bundler'
 
 " vim-scripts repos
 "Bundle 'L9'
@@ -99,6 +101,10 @@ set tags=tags;/
 set virtualedit=block
 set wrap
 set title
+set clipboard=unnamed
+
+autocmd Filetype ruby set shiftwidth=2
+
 syntax on
 
 highlight   CursorColumn  term=NONE    cterm=none ctermbg=232
@@ -140,7 +146,7 @@ map <Leader>gb :Gblame<CR>
 map <Leader>gdd :Git diff<CR>
 map <Leader>gdm :Git diff %<CR>
 map <Leader>gdf :Gdiff<CR>
-map <Leader>gg :Git 
+map <Leader>gg :Git
 
 map <Leader>] :wa<bar><UP><CR>
 
@@ -154,3 +160,9 @@ if match($TERM, "screen-256color")!=-1
 elseif match($TERM, "screen")!=-1
   set term=xterm
 endif
+
+" Indentation fix for JS embedded html
+autocmd BufRead *.html set filetype=htmlm4
+
+" Auto clear trailing whitespace
+autocmd BufWritePre * %s/\s\+$//e
