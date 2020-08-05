@@ -21,9 +21,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'ctrlpvim/ctrlp.vim'
   map <Leader>t :CtrlPBuffer<CR>
-  let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
+  "let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
   let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v\c\.(git|svn)$|cover_db|vendor|deps|_build|node_modules',
+  \ 'dir':  '\v\c\.(git|svn)$|cover_db|vendor|deps|_build|node_modules|tmp',
   \ 'file': '\v\c\.(swf|bak|png|gif|mov|ico|jpg|pdf|jrxml)$',
   \ }
 Plugin 'vim-airline/vim-airline'
@@ -54,6 +54,8 @@ Plugin 'slashmili/alchemist.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rbenv'
 Plugin 'tpope/vim-bundler'
+Plugin 'joshdick/onedark.vim'
+Plugin 'tpope/vim-eunuch'
 
 " vim-scripts repos
 "Bundle 'L9'
@@ -74,7 +76,7 @@ set autoindent
 set backspace=indent,eol,start
 set cindent " set smartindent
 set cmdheight=2
-set cursorcolumn
+set nocursorcolumn
 set nocursorline
 set errorformat=\"../../%f\"\\,%*[^0-9]%l:\ %m
 set expandtab
@@ -91,7 +93,8 @@ set nrformats=
 set number
 set ruler
 set scrolloff=5
-set shiftwidth=4
+set shiftwidth=2
+set tabstop=2
 set showcmd
 set showmatch
 set smarttab
@@ -103,7 +106,8 @@ set wrap
 set title
 set clipboard=unnamed
 
-autocmd Filetype ruby set shiftwidth=2
+autocmd Filetype ruby set shiftwidth=2 tabstop=2 expandtab
+autocmd Filetype elixir set shiftwidth=2 tabstop=2 expandtab
 
 syntax on
 
@@ -150,6 +154,9 @@ map <Leader>gg :Git
 
 map <Leader>] :wa<bar><UP><CR>
 
+nnoremap <Leader>q" ciw""<Esc>P
+nnoremap <Leader>q' ciw''<Esc>P
+
 nmap <F1> <Esc>
 imap <F1> <Esc>
 
@@ -166,3 +173,6 @@ autocmd BufRead *.html set filetype=htmlm4
 
 " Auto clear trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
+
+" Theme
+colorscheme onedark
