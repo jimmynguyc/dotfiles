@@ -1,0 +1,25 @@
+[push]
+	default = simple
+[user]
+	name = Jimmy Ngu
+	email = jimmynguyc@gmail.com
+[alias]
+	co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+	cp = cherry-pick
+  dc = diff --cached
+[merge]
+	tool = opendiff
+[mergetool]
+	keepBackup = false
+[http "https://git.demo.localflynn.com"]
+	sslCAInfo = /Users/jimmy/.flynn/ca-certs/demo-virtualbox.pem
+[credential "https://git.demo.localflynn.com"]
+	helper = /usr/local/bin/flynn git-credentials
+[core]
+	excludesfile = /Users/jimmy/.gitignore_global
