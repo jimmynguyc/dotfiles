@@ -4,25 +4,24 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 set shell=/bin/bash
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
 " My Bundles here:
 "
 " original repos on github
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'ctrlpvim/ctrlp.vim'
   map <Leader>t :CtrlPBuffer<CR>
   "let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
   let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v\c\.(git|svn)$|cover_db|vendor|deps|_build|node_modules|tmp',
   \ 'file': '\v\c\.(swf|bak|png|gif|mov|ico|jpg|pdf|jrxml)$',
   \ }
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
   let g:airline_powerline_fonts = 1
   if !exists('g:airline_symbols')
       let g:airline_symbols = {}
@@ -35,26 +34,32 @@ Plugin 'vim-airline/vim-airline'
   "let g:airline_symbols.branch = '⎇ '
   let g:airline_symbols.readonly = '⭤'
   let g:airline_symbols.linenr = '⭡'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'airblade/vim-gitgutter'
+Plug 'easymotion/vim-easymotion'
+Plug 'airblade/vim-gitgutter'
   set signcolumn=yes
   highlight clear SignColumn
   let g:gitgutter_async=0
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'tpope/vim-markdown'
-Plugin 'kana/vim-textobj-lastpat'
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rbenv'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-eunuch'
-Plugin 'joshdick/onedark.vim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'tpope/vim-markdown'
+Plug 'kana/vim-textobj-lastpat'
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rbenv'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-eunuch'
+Plug 'joshdick/onedark.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 
 
-call vundle#end()            " required
+call plug#end()
+
 filetype plugin indent on    " required
 
 """ vimrc resumes :-)
@@ -92,6 +97,7 @@ set virtualedit=block
 set wrap
 set title
 set clipboard=unnamed
+set encoding=UTF-8
 
 autocmd Filetype ruby set shiftwidth=2 tabstop=2 expandtab
 autocmd Filetype elixir set shiftwidth=2 tabstop=2 expandtab
