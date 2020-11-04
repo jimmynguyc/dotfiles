@@ -1,22 +1,18 @@
-version 7.0
-
 """ Vundle Entries
 " NOTE: comments after Bundle command are not allowed..
 set nocompatible               " be iMproved
 filetype off                   " required!
 
 set shell=/bin/bash
-set runtimepath+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 " My Bundles here:
 "
 " original repos on github
-Plugin 'matchit.zip'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -54,21 +50,12 @@ Plugin 'slashmili/alchemist.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rbenv'
 Plugin 'tpope/vim-bundler'
-Plugin 'joshdick/onedark.vim'
 Plugin 'tpope/vim-eunuch'
+Plugin 'joshdick/onedark.vim'
 
-" vim-scripts repos
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-"  let g:fuf_coveragefile_exclude = '\c\.\(swf\|bak\|png\|gif\|js\|mov\|ico\|jpg\|pdf\|jrxml\)$\|cgi\/t\/sandbox\|\/cover_db\/'
-"  map <Leader>t :FufBuffer<CR>
-"  map <C-t> :FufCoverageFile<CR>
 
-" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
-" ...
-
-filetype plugin indent on     " required!
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 """ vimrc resumes :-)
 

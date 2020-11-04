@@ -49,7 +49,7 @@ ZSH_THEME="dst"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man colorize pip python brew osx zsh-syntax-highlighting)
+plugins=(colored-man-pages colorize pip python brew osx zsh-syntax-highlighting)
 
 # User configuration
 
@@ -190,10 +190,6 @@ export NVM_DIR="$HOME/.nvm"
 # Go
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH="$HOME/Projects/go"
-
-# asdf
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
 
 
 # gem install mysql2 ssl issue fix
