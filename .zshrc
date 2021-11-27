@@ -49,11 +49,11 @@ ZSH_THEME="dst"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages colorize pip python brew osx zsh-syntax-highlighting)
+plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlighting zsh-peco-history)
 
 # User configuration
 
-export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.rbenv/shims:/Users/jimmy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/openssl/bin"
+export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/Users/jimmy/.rbenv/shims:/Users/jimmy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/openssl/bin"
 
 # heroku
 if type brew &>/dev/null; then
@@ -69,9 +69,9 @@ export LANG=en_US.UTF-8
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# chruby
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # pyenv
 eval "$(pyenv init -)"
@@ -109,7 +109,8 @@ alias getreleases="git br --all | grep -E 'origin\/r[0-9]+'"
 alias t='tmux'
 alias tns='tmux new-session -t'
 alias foreman.start.procfile.dev="be foreman start -f Procfile.dev"
-alias kali="docker run -t -i kalilinux/kali-linux-docker /bin/bash"
+alias kali="docker run -t -i kalilinux/kali /bin/bash"
+alias kalimsf="docker run -t -i kalilinux/msf /bin/bash"
 alias s='spotify'
 alias p='pomo'
 alias tailf='tail -f'
@@ -165,6 +166,15 @@ gl-upload-us-vault(){
 	aws glacier upload-archive --account-id - --profile glacier-us --vault-name my_backup --archive-description "$1" --body $2
 }
 
+# k8s
+alias kgp="kubectl get pod"
+alias kgd="kubectl get deployment"
+alias kcd="kubectl create deployment"
+alias kgrs="kubectl get replicaset"
+alias kds="kubectl describe"
+alias kaf="kubectl apply -f"
+alias kai="cat <<EOF | kubectl apply -f -"
+
 # Avvo
 cloneavvo() {
 	git clone git@github.com:avvo/$1.git
@@ -184,8 +194,8 @@ export PATH="/usr/local/opt/node@4/bin:$PATH"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Go
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
@@ -259,3 +269,53 @@ for f in ~/Projects/avvo/k8s-helpers/*.sh; do source $f; done
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+# Force xterm-color on various stuffs
+alias ssh='TERM=xterm-color ssh'
+alias vagrant='TERM=xterm-color vagrant'
+
+# Fortune + cowsay
+fortune | cowsay
+
+# chtf
+if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
+    source /usr/local/share/chtf/chtf.sh
+fi
+
+# istioctl
+export PATH=$PATH:$HOME/.istioctl/bin
+
+# homebrew
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# ansible
+export ANSIBLE_NOCOWS=1
+
+# laravel
+export PATH="$PATH:$HOME/.composer/vendor/bin"
+alias artisan="php artisan"
+
+# bzip2
+export PATH="/usr/local/opt/bzip2/bin:$PATH"
+
+# phpbrew
+source /Users/jimmy/.phpbrew/bashrc
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
+
+# conda
+alias condaup="source $HOME/miniconda3/bin/activate"
+
+# exa
+alias ls="exa"
+alias lst="exa --tree --level"
+
+# Unicode for less
+export LESSCHARSET=utf-8
+alias less="less -r"
+
+# Workarounds
+alias fixnode17ssl="export NODE_OPTIONS=--openssl-legacy-provider"  # node17 issue with ssl https://medium.com/the-node-js-collection/node-js-17-is-here-8dba1e14e382
+
+

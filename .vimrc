@@ -12,7 +12,7 @@ Plug 'VundleVim/Vundle.vim'
 " My Bundles here:
 "
 " original repos on github
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
   map <Leader>t :CtrlPBuffer<CR>
@@ -34,11 +34,13 @@ Plug 'vim-airline/vim-airline'
   "let g:airline_symbols.branch = '⎇ '
   let g:airline_symbols.readonly = '⭤'
   let g:airline_symbols.linenr = '⭡'
+
 Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
   set signcolumn=yes
   highlight clear SignColumn
   let g:gitgutter_async=0
+
 Plug 'vim-ruby/vim-ruby'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -52,9 +54,25 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-eunuch'
 Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  let g:coc_global_extensions = [
+    \ 'coc-snippets',
+    \ 'coc-pairs',
+    \ 'coc-tsserver',
+    \ 'coc-eslint',
+    \ 'coc-prettier',
+    \ 'coc-json',
+    \ 'coc-solargraph',
+    \ ]
+
+  " prettier command for coc
+  command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  let g:NERDTreeIgnore = ['^node_modules$']
+
+Plug 'mileszs/ack.vim'
 Plug 'ryanoasis/vim-devicons'
 
 
@@ -99,7 +117,7 @@ set title
 set clipboard=unnamed
 set encoding=UTF-8
 
-autocmd Filetype ruby set shiftwidth=2 tabstop=2 expandtab
+autocmd Filetype ruby set shiftwidth=2 tabstop=2 expandtab omnifunc=LanguageClient#complete
 autocmd Filetype elixir set shiftwidth=2 tabstop=2 expandtab
 
 syntax on
@@ -125,6 +143,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 inoremap <C-S> <ESC>:update<CR>a
 nnoremap <C-S> :update<CR>
 nnoremap <C-L> :noh<CR><C-L>
+nnoremap <C-B> :NERDTreeToggle<CR>
 inoremap jj <Esc>
 nnoremap <Leader><Leader>t :ClearAllCtrlPCaches<CR>
 
