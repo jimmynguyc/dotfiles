@@ -15,7 +15,6 @@ Plug 'VundleVim/Vundle.vim'
 "Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
-  map <Leader>t :CtrlPBuffer<CR>
   "let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
   let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v\c\.(git|svn)$|cover_db|vendor|deps|_build|node_modules|tmp',
@@ -74,6 +73,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 Plug 'mileszs/ack.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'amadeus/vim-mjml'
 
 
 call plug#end()
@@ -140,37 +140,36 @@ highlight   PmenuThumb                            ctermbg=7  ctermfg=0
 "
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-inoremap <C-S> <ESC>:update<CR>a
+""" Key Mappings
+" Generic
 nnoremap <C-S> :update<CR>
 nnoremap <C-L> :noh<CR><C-L>
-nnoremap <C-B> :NERDTreeToggle<CR>
-inoremap jj <Esc>
-nnoremap <Leader><Leader>t :ClearAllCtrlPCaches<CR>
-
 nnoremap <Leader>r :source ~/.vimrc<CR>
 nnoremap <Leader><Leader>r :e ~/.vimrc<CR>
-" Ctrl P/N on Command Line mode (with filtering)
+nnoremap <Leader>sa :wall<CR>
+nnoremap <Leader>qa :bufdo bd<CR>
+nnoremap <Leader>qq ciw""<Esc>P
+nnoremap <Leader>qs ciw''<Esc>P
+nnoremap <Leader>qs ciw''<Esc>P
+inoremap <C-S> <ESC>:update<CR>a
+inoremap jj <Esc>
 cnoremap <C-N> <DOWN>
 cnoremap <C-P> <UP>
 
-map <Leader>gs :Gstatus<CR>
-map <Leader>gc :Gcommit<CR>
-map <Leader>gm :Gcommit --amend<CR>
-map <Leader>gll :Git log<CR>
-map <Leader>glp :Git log -p<CR>
-map <Leader>gb :Gblame<CR>
-map <Leader>gdd :Git diff<CR>
-map <Leader>gdm :Git diff %<CR>
-map <Leader>gdf :Gdiff<CR>
-map <Leader>gg :Git
+" CtrlP
+nnoremap <Leader>t :CtrlPBuffer<CR>
+nnoremap <Leader>tc :ClearAllCtrlPCaches<CR>
 
-map <Leader>] :wa<bar><UP><CR>
+" NERDTree
+nnoremap <C-B> :NERDTreeToggle<CR>
+nnoremap <C-F> :NERDTreeFind<CR>
 
-nnoremap <Leader>q" ciw""<Esc>P
-nnoremap <Leader>q' ciw''<Esc>P
+" Coc Actions
+nnoremap <Leader>g :call CocActionAsync('jumpDefinition')<CR>
+nnoremap <Leader>f :call CocAction('format')<CR>
 
-nmap <F1> <Esc>
-imap <F1> <Esc>
+
+""" End Key Mappings
 
 autocmd FileType gitcommit autocmd! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
@@ -188,3 +187,4 @@ autocmd BufWritePre * %s/\s\+$//e
 
 " Theme
 colorscheme onedark
+
