@@ -15,11 +15,16 @@ Plug 'VundleVim/Vundle.vim'
 "Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ctrlpvim/ctrlp.vim'
-  "let g:ctrlp_working_path_mode = 0 " don’t manage working directory.
+  let g:ctrlp_working_path_mode = 'ra'
   let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v\c\.(git|svn)$|cover_db|vendor|deps|_build|node_modules|tmp',
-  \ 'file': '\v\c\.(swf|bak|png|gif|mov|ico|jpg|pdf|jrxml)$',
+  \ 'file': '\v\c\.(swf|bak|png|gif|mov|ico|jpg|pdf|jrxml|min\.js|js\.map)$',
   \ }
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
+  let g:ctrlp_clear_cache_on_exit = 0
+  let g:ctrlp_lazy_update = 1
+  let g:ctrlp_dont_split = 'nerdtree'
+
 Plug 'vim-airline/vim-airline'
   let g:airline_powerline_fonts = 1
   if !exists('g:airline_symbols')
@@ -61,19 +66,25 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     \ 'coc-prettier',
     \ 'coc-json',
     \ 'coc-solargraph',
+    \ 'coc-vetur',
+    \ 'coc-phpls',
+    \ 'coc-yaml',
     \ ]
 
   " prettier command for coc
   command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-  let g:NERDTreeIgnore = ['^node_modules$']
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"  let g:NERDTreeIgnore = ['^node_modules$']
 
 Plug 'mileszs/ack.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'amadeus/vim-mjml'
+  if executable('ag')
+    let g:ackprg = 'ag --nogroup --nocolor --column --path-to-ignore=/Users/jimmy/.ignore'
+  endif
+"Plug 'amadeus/vim-mjml'
 
 
 call plug#end()
@@ -116,6 +127,8 @@ set wrap
 set title
 set clipboard=unnamed
 set encoding=UTF-8
+set spelllang=en
+set relativenumber
 
 autocmd Filetype ruby set shiftwidth=2 tabstop=2 expandtab omnifunc=LanguageClient#complete
 autocmd Filetype elixir set shiftwidth=2 tabstop=2 expandtab
@@ -144,6 +157,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 " Generic
 nnoremap <C-S> :update<CR>
 nnoremap <C-L> :noh<CR><C-L>
+nnoremap <C-J> :cclose<CR>
 nnoremap <Leader>r :source ~/.vimrc<CR>
 nnoremap <Leader><Leader>r :e ~/.vimrc<CR>
 nnoremap <Leader>sa :wall<CR>
@@ -155,10 +169,11 @@ inoremap <C-S> <ESC>:update<CR>a
 inoremap jj <Esc>
 cnoremap <C-N> <DOWN>
 cnoremap <C-P> <UP>
+nnoremap <Leader>ff gg=G<CR>
 
 " CtrlP
 nnoremap <Leader>t :CtrlPBuffer<CR>
-nnoremap <Leader>tc :ClearAllCtrlPCaches<CR>
+nnoremap <Leader><Leader>t :CtrlPClearCache<CR>
 
 " NERDTree
 nnoremap <C-B> :NERDTreeToggle<CR>
@@ -168,6 +183,8 @@ nnoremap <C-F> :NERDTreeFind<CR>
 nnoremap <Leader>g :call CocActionAsync('jumpDefinition')<CR>
 nnoremap <Leader>f :call CocAction('format')<CR>
 
+" Ack
+cnoreabbrev Ack Ack!
 
 """ End Key Mappings
 
