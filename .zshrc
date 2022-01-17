@@ -50,7 +50,7 @@ ZSH_THEME="dst"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlighting)
+plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlighting zsh-peco-history)
 
 # User configuration
 
@@ -87,7 +87,7 @@ eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # yarn global
-export PATH="$(yarn global bin):$PATH"
+#export PATH="$(yarn global bin):$PATH"
 
 # Aliases
 alias rs='rails s'
@@ -185,8 +185,6 @@ cloneavvo() {
 	git clone git@github.com:avvo/$1.git
 }
 
-
-
 # SSH Agent
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
@@ -195,19 +193,8 @@ ssh-add ~/.ssh/id_rsa_personal
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# Go
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export GOPATH="$HOME/Projects/go"
-
-
-# gem install mysql2 ssl issue fix
-export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
-
-# fix shotgun error (https://github.com/rtomayko/shotgun/issues/69)
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # zsh options
 unsetopt AUTO_CD
@@ -236,21 +223,6 @@ popd()
 # Run ondir on login
 eval "`ondir /`"
 
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jimmy/Projects/google-cloud-sdk-208.0.2-darwin-x86_64/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jimmy/Projects/google-cloud-sdk-208.0.2-darwin-x86_64/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/jimmy/Projects/google-cloud-sdk-208.0.2-darwin-x86_64/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jimmy/Projects/google-cloud-sdk-208.0.2-darwin-x86_64/google-cloud-sdk/completion.zsh.inc'; fi
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/jimmy/.nvm/versions/node/v8.11.4/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jimmy/.nvm/versions/node/v8.11.4/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/jimmy/.nvm/versions/node/v8.11.4/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jimmy/.nvm/versions/node/v8.11.4/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
 # Kitty
 autoload -Uz compinit
 compinit
@@ -263,13 +235,6 @@ case $TERM in
         ;;
 esac
 
-
-# Avvo k8s helper
-for f in ~/Projects/avvo/k8s-helpers/*.sh; do source $f; done
-
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-PS1='$(kube_ps1)'$PS1
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # Force xterm-color on various stuffs
 alias ssh='TERM=xterm-color ssh'
@@ -292,22 +257,6 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # ansible
 export ANSIBLE_NOCOWS=1
 
-# laravel
-export PATH="$PATH:$HOME/.composer/vendor/bin"
-alias artisan="php artisan"
-
-# bzip2
-export PATH="/usr/local/opt/bzip2/bin:$PATH"
-
-# phpbrew
-source /Users/jimmy/.phpbrew/bashrc
-
-# add Pulumi to the PATH
-export PATH=$PATH:$HOME/.pulumi/bin
-
-# conda
-alias condaup="source $HOME/miniconda3/bin/activate"
-
 # exa
 alias ls="exa"
 alias lst="exa --tree --level"
@@ -320,3 +269,4 @@ alias less="less -r"
 alias fixnode17ssl="export NODE_OPTIONS=--openssl-legacy-provider"  # node17 issue with ssl https://medium.com/the-node-js-collection/node-js-17-is-here-8dba1e14e382
 
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
