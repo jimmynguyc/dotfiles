@@ -1,0 +1,12 @@
+{
+    "solargraph.diagnostics": false,
+    "solargraph.transport": "stdio",
+    "solargraph.completion": true,
+    "solargraph.formatting": true,
+    "solargraph.autoformat": true,
+    "solargraph.hover": true,
+    "solargraph.rename": true,
+    "coc.preferences.formatOnSaveFiletypes": ["ruby", "vue"],
+    "vetur.format.defaultFormatter.js": "prettier-eslint",
+    "vetur.format.defaultFormatter.ts": "prettier-tslint"
+}
