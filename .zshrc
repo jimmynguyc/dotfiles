@@ -1,3 +1,4 @@
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/jimmy/.oh-my-zsh
 
@@ -49,11 +50,14 @@ ZSH_THEME="dst"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlighting zsh-peco-history)
+plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlighting)
 
 # User configuration
 
 export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/Users/jimmy/.rbenv/shims:/Users/jimmy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/openssl/bin"
+
+# Initialize Homebrew env
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # heroku
 if type brew &>/dev/null; then
@@ -70,14 +74,14 @@ export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
 # chruby
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 
 # pyenv
 eval "$(pyenv init -)"
 
 # pipenv
-eval "$(pipenv --completion)"
+eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
 
 # composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
@@ -188,10 +192,6 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 ssh-add ~/.ssh/id_rsa_mv
 ssh-add ~/.ssh/id_rsa_personal
-
-# node
-export PATH="/usr/local/opt/node@6/bin:$PATH"
-export PATH="/usr/local/opt/node@4/bin:$PATH"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
