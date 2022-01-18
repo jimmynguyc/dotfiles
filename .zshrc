@@ -50,7 +50,7 @@ ZSH_THEME="dst"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlighting zsh-peco-history)
+plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlighting zsh-peco-history git zsh-z)
 
 # User configuration
 
@@ -268,5 +268,9 @@ alias less="less -r"
 # Workarounds
 alias fixnode17ssl="export NODE_OPTIONS=--openssl-legacy-provider"  # node17 issue with ssl https://medium.com/the-node-js-collection/node-js-17-is-here-8dba1e14e382
 
-
+# NVM
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Starship prompt
+eval "$(starship init zsh)"
+
