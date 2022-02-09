@@ -195,7 +195,6 @@ cloneavvo() {
 # SSH Agent
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
-ssh-add ~/.ssh/id_rsa_mv
 ssh-add ~/.ssh/id_rsa_personal
 ssh-add ~/.ssh/iarmaroc.pem
 
