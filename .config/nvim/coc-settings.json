@@ -1,13 +1,32 @@
 {
-    "solargraph.diagnostics": false,
-    "solargraph.transport": "stdio",
-    "solargraph.completion": true,
-    "solargraph.formatting": true,
-    "solargraph.autoformat": true,
-    "solargraph.hover": true,
-    "solargraph.rename": true,
-    "solargraph.commandPath": "/Users/jimmy/.gem/ruby/3.1.0/bin/solargraph",
-    "coc.preferences.formatOnSaveFiletypes": ["ruby", "vue"],
-    "vetur.format.defaultFormatter.js": "prettier-eslint",
-    "vetur.format.defaultFormatter.ts": "prettier-tslint"
+  "solargraph.diagnostics": false,
+  "solargraph.transport": "stdio",
+  "solargraph.completion": true,
+  "solargraph.formatting": true,
+  "solargraph.autoformat": true,
+  "solargraph.hover": true,
+  "solargraph.rename": true,
+  "solargraph.commandPath": "/Users/jimmy/.gem/ruby/3.1.0/bin/solargraph",
+  "coc.preferences.formatOnSaveFiletypes": ["ruby", "vue"],
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "vetur.format.defaultFormatter.ts": "prettier-tslint",
+  "languageserver": {
+    "sorbet": {
+      "command": "srb",
+      "args": [
+        "tc",
+        "--typed",
+        "true",
+        "--enable-all-experimental-lsp-features",
+        "--lsp",
+        "--disable-watchman",
+        "--dir",
+        "."
+      ],
+      "filetypes": ["ruby"],
+      "rootPatterns": ["sorbet/config"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
 }

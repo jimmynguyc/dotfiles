@@ -12,13 +12,12 @@
     ~/.vimrc: .vimrc
     ~/.zshrc: .zshrc
     ~/.gitconfig: .gitconfig
+    ~/.p10k.zsh: .p10k.zsh
     ~/.config/:
       glob: true
       path: .config/**
       relink: true
       create: true
-      exclude: [ .config/starship.toml ]
-    ~/.config/starship.toml: .config/starship.toml
 
 - create:
     ~/Projects:

@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/jimmy/.oh-my-zsh
@@ -272,8 +279,11 @@ alias fixnode17ssl="export NODE_OPTIONS=--openssl-legacy-provider"  # node17 iss
 # NVM
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Starship prompt
-eval "$(starship init zsh)"
+# Powerlevel10k Prompt
+source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Get docker stuffs to work on arm64
 #export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
