@@ -28,4 +28,3 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - [./setup.sh, Setup stuffs]
