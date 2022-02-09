@@ -190,6 +190,7 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 ssh-add ~/.ssh/id_rsa_mv
 ssh-add ~/.ssh/id_rsa_personal
+ssh-add ~/.ssh/iarmaroc.pem
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -274,3 +275,5 @@ alias fixnode17ssl="export NODE_OPTIONS=--openssl-legacy-provider"  # node17 iss
 # Starship prompt
 eval "$(starship init zsh)"
 
+# Get docker stuffs to work on arm64
+#export DOCKER_DEFAULT_PLATFORM=linux/amd64

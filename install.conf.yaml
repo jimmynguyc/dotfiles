@@ -1,0 +1,31 @@
+- defaults:
+    link:
+      relink: true
+
+- clean:
+    ~/: {}
+    ~/.config:
+      recursive: true
+
+- link:
+    ~/.vim: .vim
+    ~/.vimrc: .vimrc
+    ~/.zshrc: .zshrc
+    ~/.gitconfig: .gitconfig
+    ~/.config/:
+      glob: true
+      path: .config/**
+      relink: true
+      create: true
+      exclude: [ .config/starship.toml ]
+    ~/.config/starship.toml: .config/starship.toml
+
+- create:
+    ~/Projects:
+    ~/.config:
+    ~/.ssh:
+      mode: 0700
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [./setup.sh, Setup stuffs]

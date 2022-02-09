@@ -6,9 +6,6 @@ filetype off                   " required!
 set shell=/bin/bash
 call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plug 'VundleVim/Vundle.vim'
-
 " My Bundles here:
 "
 " original repos on github
@@ -108,7 +105,7 @@ set incsearch
 set laststatus=2
 set list
 set listchars=tab:>-,trail:-
-set mouse=c
+set mouse=a
 set nowrap
 set nrformats=
 set number
