@@ -13,6 +13,7 @@
     ~/.zshrc: .zshrc
     ~/.gitconfig: .gitconfig
     ~/.p10k.zsh: .p10k.zsh
+    ~/.ackignore: .ackignore
     ~/.config/:
       glob: true
       path: .config/**

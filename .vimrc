@@ -9,19 +9,7 @@ call plug#begin('~/.vim/plugged')
 " My Bundles here:
 "
 " original repos on github
-"Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'ctrlpvim/ctrlp.vim'
-  let g:ctrlp_working_path_mode = 'ra'
-  let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v\c\.(git|svn)$|cover_db|vendor|deps|_build|node_modules|tmp',
-  \ 'file': '\v\c\.(swf|bak|png|gif|mov|ico|jpg|pdf|jrxml|min\.js|js\.map)$',
-  \ }
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
-  let g:ctrlp_clear_cache_on_exit = 0
-  let g:ctrlp_lazy_update = 1
-  let g:ctrlp_dont_split = 'nerdtree'
-
 Plug 'vim-airline/vim-airline'
   let g:airline_powerline_fonts = 1
 
@@ -32,6 +20,7 @@ Plug 'airblade/vim-gitgutter'
   let g:gitgutter_async=0
 
 Plug 'vim-ruby/vim-ruby'
+  let g:ruby_indent_assignment_style = 'variable'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-markdown'
@@ -42,6 +31,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-eunuch'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'joshdick/onedark.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
   let g:coc_global_extensions = [
@@ -55,22 +45,25 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     \ 'coc-vetur',
     \ 'coc-phpls',
     \ 'coc-yaml',
+    \ 'coc-svelte',
     \ ]
 
   " prettier command for coc
   command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 Plug 'scrooloose/nerdtree'
-"Plug 'ryanoasis/vim-devicons'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-"  let g:NERDTreeIgnore = ['^node_modules$']
-
 Plug 'mileszs/ack.vim'
   if executable('ag')
-    let g:ackprg = 'ag --nogroup --nocolor --column --path-to-ignore=/Users/jimmy/.ignore'
+    let g:ackprg = 'ag --nogroup --nocolor --column --path-to-ignore=/Users/jimmy/.ackignore'
   endif
-"Plug 'amadeus/vim-mjml'
+  let NERDTreeQuitOnOpen = 1
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
 
 
 call plug#end()
@@ -148,18 +141,22 @@ nnoremap <Leader>r :source ~/.vimrc<CR>
 nnoremap <Leader><Leader>r :e ~/.vimrc<CR>
 nnoremap <Leader>sa :wall<CR>
 nnoremap <Leader>qa :bufdo bd<CR>
+nnoremap <Leader>bd :%bd\|e#\|bd#<CR>
 nnoremap <Leader>qq ciw""<Esc>P
 nnoremap <Leader>qs ciw''<Esc>P
 nnoremap <Leader>qs ciw''<Esc>P
+nnoremap <Leader>ff gg=G<CR>
+nnoremap <Leader>f :! standardrb --fix %<CR>
+nnoremap <Leader>fn :let @*=expand("%")<CR>
+nnoremap <Leader>p "0P<CR>
 inoremap <C-S> <ESC>:update<CR>a
 inoremap jj <Esc>
 cnoremap <C-N> <DOWN>
 cnoremap <C-P> <UP>
-nnoremap <Leader>ff gg=G<CR>
 
-" CtrlP
-nnoremap <Leader>t :CtrlPBuffer<CR>
-nnoremap <Leader><Leader>t :CtrlPClearCache<CR>
+" Telecope
+nnoremap <C-P> :Telescope find_files theme=ivy<CR>
+nnoremap <Leader>t :Telescope buffers theme=ivy<CR>
 
 " NERDTree
 nnoremap <C-B> :NERDTreeToggle<CR>
@@ -167,7 +164,6 @@ nnoremap <C-F> :NERDTreeFind<CR>
 
 " Coc Actions
 nnoremap <Leader>g :call CocActionAsync('jumpDefinition')<CR>
-nnoremap <Leader>f :call CocAction('format')<CR>
 
 " Ack
 cnoreabbrev Ack Ack!

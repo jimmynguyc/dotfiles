@@ -192,12 +192,6 @@ cloneavvo() {
 	git clone git@github.com:avvo/$1.git
 }
 
-# SSH Agent
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-ssh-add ~/.ssh/id_rsa_personal
-ssh-add ~/.ssh/iarmaroc.pem
-
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -274,6 +268,17 @@ alias less="less -r"
 
 # Workarounds
 alias fixnode17ssl="export NODE_OPTIONS=--openssl-legacy-provider"  # node17 issue with ssl https://medium.com/the-node-js-collection/node-js-17-is-here-8dba1e14e382
+alias fixarm64docker="export DOCKER_DEFAULT_PLATFORM=linux/amd64"
+fixarm64docker
+
+# Viaeurope Heroku
+alias viaprod="env HEROKU_APP=viaeurope-production"
+alias viastag="env HEROKU_APP=viaeurope-staging"
+alias viasand="env HEROKU_APP=viaeurope-sandbox"
+alias viaprodc="viaprod heroku run RAILS_LOG_LEVEL=debug bin/rails console"
+alias viastagc="viastag heroku run RAILS_LOG_LEVEL=debug bin/rails console"
+alias viasandc="viasand heroku run RAILS_LOG_LEVEL=debug bin/rails console"
+alias viaprodpsql="psql -h ec2-54-220-131-73.eu-west-1.compute.amazonaws.com -Ujimmy d2tbkkj2ess321"
 
 # NVM
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -283,6 +288,38 @@ source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Get docker stuffs to work on arm64
-#export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# xelatex
+export PATH="/usr/local/texlive/2021basic/bin/universal-darwin/:$PATH"
+
+# kali docker
+alias kali="docker run -it mykali/with-metapackage"
+
+curltime() {
+  curl -w @- -o /dev/null -s "$@" <<'EOF'
+      time_namelookup:  %{time_namelookup}s\n
+         time_connect:  %{time_connect}s\n
+      time_appconnect:  %{time_appconnect}s\n
+     time_pretransfer:  %{time_pretransfer}s\n
+        time_redirect:  %{time_redirect}s\n
+   time_starttransfer:  %{time_starttransfer}s\n
+                      -----------\n
+           time_total:  %{time_total}s\n
+EOF
+}
