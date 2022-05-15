@@ -64,7 +64,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'tyru/open-browser.vim'
 Plug 'tyru/open-browser-github.vim'
-
+Plug 'xiyaowong/nvim-transparent'
+  let g:transparent_enabled = v:true
 
 call plug#end()
 

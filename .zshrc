@@ -123,7 +123,6 @@ alias tns='tmux new-session -t'
 alias foreman.start.procfile.dev="be foreman start -f Procfile.dev"
 alias kali="docker run -t -i kalilinux/kali /bin/bash"
 alias kalimsf="docker run -t -i kalilinux/msf /bin/bash"
-alias s='spotify'
 alias p='pomo'
 alias tailf='tail -f'
 alias c='code'
@@ -229,6 +228,12 @@ autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
+alias icat="kitty +kitten icat"
+alias dif="kitty +kitten diff"
+alias bcast="kitty +kitten broadcast"
+#alias s="alias s=kitty +kitten ssh"
+alias cb="kitty +kitten clipboard"
+
 
 case $TERM in
     xterm*)
@@ -323,3 +328,4 @@ curltime() {
            time_total:  %{time_total}s\n
 EOF
 }
+

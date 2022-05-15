@@ -6,7 +6,7 @@
   "solargraph.autoformat": false,
   "solargraph.hover": true,
   "solargraph.rename": true,
-  "solargraph.commandPath": "/Users/jimmy/.gem/ruby/3.1.0/bin/solargraph",
+  "solargraph.commandPath": "/Users/jimmy/.gem/ruby/3.1.2/bin/solargraph",
   "coc.preferences.formatOnSaveFiletypes": ["ruby", "vue"],
   "vetur.format.defaultFormatter.js": "prettier-eslint",
   "vetur.format.defaultFormatter.ts": "prettier-tslint",
