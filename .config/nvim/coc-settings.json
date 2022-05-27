@@ -1,13 +1,14 @@
 {
-  "solargraph.diagnostics": false,
+  "solargraph.diagnostics": true,
   "solargraph.transport": "stdio",
   "solargraph.completion": true,
-  "solargraph.formatting": false,
+  "solargraph.formatting": true,
   "solargraph.autoformat": false,
   "solargraph.hover": true,
   "solargraph.rename": true,
+  "solargraph.useBundler": false,
   "solargraph.commandPath": "/Users/jimmy/.gem/ruby/3.1.2/bin/solargraph",
-  "coc.preferences.formatOnSaveFiletypes": ["ruby", "vue"],
+  "coc.preferences.formatOnSaveFiletypes": [],
   "vetur.format.defaultFormatter.js": "prettier-eslint",
   "vetur.format.defaultFormatter.ts": "prettier-tslint",
   "svelte.enable-ts-plugin": true

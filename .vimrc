@@ -147,7 +147,8 @@ nnoremap <Leader>qq ciw""<Esc>P
 nnoremap <Leader>qs ciw''<Esc>P
 nnoremap <Leader>qs ciw''<Esc>P
 nnoremap <Leader>ff gg=G<CR>
-nnoremap <Leader>f :! standardrb --fix %<CR>
+"nnoremap <Leader>f :! standardrb --fix %<CR>
+nnoremap <Leader>f :call CocAction('format')<CR>
 nnoremap <Leader>fn :let @*=expand("%")<CR>
 nnoremap <Leader>p "0P<CR>
 inoremap <C-S> <ESC>:update<CR>a

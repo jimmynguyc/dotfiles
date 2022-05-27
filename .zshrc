@@ -247,7 +247,7 @@ alias ssh='TERM=xterm-color ssh'
 alias vagrant='TERM=xterm-color vagrant'
 
 # Fortune + cowsay
-fortune | cowsay
+#fortune | cowsay
 
 # chtf
 if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
@@ -329,3 +329,5 @@ curltime() {
 EOF
 }
 
+# rubocop
+export XDG_CONFIG_HOME="$HOME/.config"
