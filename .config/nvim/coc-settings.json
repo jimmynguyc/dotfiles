@@ -8,8 +8,9 @@
   "solargraph.rename": true,
   "solargraph.useBundler": false,
   "solargraph.commandPath": "/Users/jimmy/.gem/ruby/3.1.2/bin/solargraph",
+  //"solargraph.commandPath": "/Users/jimmy/.gem/ruby/3.0.4/bin/solargraph",
   "coc.preferences.formatOnSaveFiletypes": [],
-  "vetur.format.defaultFormatter.js": "prettier-eslint",
-  "vetur.format.defaultFormatter.ts": "prettier-tslint",
+  "vetur.format.defaultFormatter.js": "prettier",
+  "vetur.format.defaultFormatter.ts": "prettier",
   "svelte.enable-ts-plugin": true
 }

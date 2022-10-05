@@ -61,7 +61,7 @@ plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlightin
 
 # User configuration
 
-export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/Users/jimmy/.rbenv/shims:/Users/jimmy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/openssl/bin"
+export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/Users/jimmy/.rbenv/shims:/Users/jimmy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/opt/homebrew/opt/openssl@3/bin:/sbin:/usr/local/opt/openssl/bin"
 
 # Initialize Homebrew env
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -120,7 +120,6 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias getreleases="git br --all | grep -E 'origin\/r[0-9]+'"
 alias t='tmux'
 alias tns='tmux new-session -t'
-alias foreman.start.procfile.dev="be foreman start -f Procfile.dev"
 alias kali="docker run -t -i kalilinux/kali /bin/bash"
 alias kalimsf="docker run -t -i kalilinux/msf /bin/bash"
 alias p='pomo'
@@ -136,7 +135,6 @@ alias kubesshpod='f() {
 	shift
 	kubectl exec -it $pod -c $name --namespace=$KUBE_NAMESPACE -- $@
 };f'
-alias sshamaterasu="ssh dev@amaterasu -p22000 -i ~/.ssh/id_rsa_mv"
 alias cleardnscache="sudo killall -HUP mDNSResponder && echo macOS DNS Cache Reset"
 alias pryme="bundle exec pry -r ./config/environment"
 alias clearswp="rm -fvr ~/.local/share/nvim/swap/"
@@ -331,3 +329,9 @@ EOF
 
 # rubocop
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# ruby configure opts
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# ViaEurope
+export VIA_USER="jimmy@viaeurope.com"
