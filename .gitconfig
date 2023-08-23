@@ -12,7 +12,14 @@
   type = cat-file -t
   dump = cat-file -p
 	cp = cherry-pick
+  d = diff
   dc = diff --cached
+  p = pull
+  pr = pull --rebase
+  main-branch = "! git remote show origin | grep 'HEAD branch' | awk '{print $3}'"
+  prom = "! git pull --rebase origin $(git main-branch)"
+  mt = mergetool
+  rc = rebase --continue
 [merge]
 	tool = opendiff
 [mergetool]
@@ -23,13 +30,9 @@
 	helper = /usr/local/bin/flynn git-credentials
 [core]
 	excludesfile = /Users/jimmy/.gitignore_global
+	autocrlf = false
 [pull]
 	ff = only
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [init]
 	defaultBranch = master
 [url "git@gitlab.com:"]
@@ -38,3 +41,8 @@
 	insteadOf = https://github.com/
 [commit]
 	verbose = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

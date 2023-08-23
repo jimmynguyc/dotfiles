@@ -27,6 +27,7 @@ Plug 'tpope/vim-markdown'
 Plug 'kana/vim-textobj-lastpat'
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
@@ -37,17 +38,20 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   let g:coc_global_extensions = [
     \ 'coc-snippets',
     \ 'coc-pairs',
-    \ 'coc-tsserver',
-    \ 'coc-json',
-    \ 'coc-solargraph',
-    \ 'coc-vetur',
     \ 'coc-phpls',
     \ 'coc-yaml',
+    \ 'coc-tsserver',
+    \ 'coc-json',
     \ 'coc-svelte',
-    \ ]
+    \ 'coc-solargraph',
+    \ 'coc-vetur',
+    \ 'coc-prettier',
+   \ ]
+   "\ 'coc-prettier',
+Plug 'github/copilot.vim'"
 
   " prettier command for coc
-  command! -nargs=0 Prettier :CocCommand prettier.formatFile
+  "command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 Plug 'scrooloose/nerdtree'
 Plug 'mileszs/ack.vim'
@@ -64,6 +68,7 @@ Plug 'tyru/open-browser.vim'
 Plug 'tyru/open-browser-github.vim'
 Plug 'xiyaowong/nvim-transparent'
   let g:transparent_enabled = v:true
+Plug 'xolox/vim-misc'
 
 call plug#end()
 
@@ -187,6 +192,10 @@ endfunction
 
 " Ack
 cnoreabbrev Ack Ack!
+
+" Fugitive
+cnoreabbrev gdiff Gdiff
+cnoreabbrev gblame G blame
 
 """ End Key Mappings
 

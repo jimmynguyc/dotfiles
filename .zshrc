@@ -61,7 +61,10 @@ plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlightin
 
 # User configuration
 
-export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/Users/jimmy/.rbenv/shims:/Users/jimmy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/opt/homebrew/opt/openssl@3/bin:/sbin:/usr/local/opt/openssl/bin"
+export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/Users/jimmy/.rbenv/shims:/Users/jimmy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/opt/homebrew/opt/openssl@1.1/bin:/opt/homebrew/opt/openssl@3/bin:/sbin:/usr/local/opt/openssl/bin"
+
+# Postgres
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # Initialize Homebrew env
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -137,7 +140,7 @@ alias kubesshpod='f() {
 };f'
 alias cleardnscache="sudo killall -HUP mDNSResponder && echo macOS DNS Cache Reset"
 alias pryme="bundle exec pry -r ./config/environment"
-alias clearswp="rm -fvr ~/.local/share/nvim/swap/"
+alias clearswp="rm -fvr ~/.local/state/nvim/swap/"
 
 # Glacier commands
 alias gl-describe-sg-vault="aws glacier describe-vault --account-id - --vault-name Backups --profile glacier-sg"
@@ -183,6 +186,9 @@ alias kgrs="kubectl get replicaset"
 alias kds="kubectl describe"
 alias kaf="kubectl apply -f"
 alias kai="cat <<EOF | kubectl apply -f -"
+
+# Ruby Webrick
+alias webrick="ruby -run -ehttpd"
 
 # Avvo
 cloneavvo() {
@@ -330,8 +336,9 @@ EOF
 # rubocop
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# ruby configure opts
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-
 # ViaEurope
 export VIA_USER="jimmy@viaeurope.com"
+
+# ruby-pg segfault workaround
+# https://github.com/ged/ruby-pg/issues/311#issuecomment-561927000
+export PGGSSENCMODE="disable"
