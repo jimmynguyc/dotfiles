@@ -3,6 +3,7 @@
 [user]
 	name = Jimmy Ngu
 	email = jimmynguyc@gmail.com
+	signingkey = AD11CE1A4BBB6159533619DF17AE17CE97285D96
 [alias]
 	co = checkout
   ci = commit
@@ -33,6 +34,7 @@
 	autocrlf = false
 [pull]
 	ff = only
+	rebase = true
 [init]
 	defaultBranch = master
 [url "git@gitlab.com:"]
@@ -41,6 +43,7 @@
 	insteadOf = https://github.com/
 [commit]
 	verbose = true
+	gpgsign = false
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

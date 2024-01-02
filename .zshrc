@@ -57,14 +57,14 @@ ZSH_THEME="dst"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages colorize pip python brew macos zsh-syntax-highlighting zsh-peco-history git zsh-z)
+plugins=(colored-man-pages colorize rails ruby brew macos zsh-syntax-highlighting zsh-peco-history git zsh-z)
 
 # User configuration
 
 export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/Users/jimmy/.rbenv/shims:/Users/jimmy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/opt/homebrew/opt/openssl@1.1/bin:/opt/homebrew/opt/openssl@3/bin:/sbin:/usr/local/opt/openssl/bin"
 
 # Postgres
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # Initialize Homebrew env
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -190,11 +190,6 @@ alias kai="cat <<EOF | kubectl apply -f -"
 # Ruby Webrick
 alias webrick="ruby -run -ehttpd"
 
-# Avvo
-cloneavvo() {
-	git clone git@github.com:avvo/$1.git
-}
-
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -252,14 +247,6 @@ alias vagrant='TERM=xterm-color vagrant'
 
 # Fortune + cowsay
 #fortune | cowsay
-
-# chtf
-if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
-    source /usr/local/share/chtf/chtf.sh
-fi
-
-# istioctl
-export PATH=$PATH:$HOME/.istioctl/bin
 
 # homebrew
 export HOMEBREW_NO_AUTO_UPDATE=1
@@ -342,3 +329,7 @@ export VIA_USER="jimmy@viaeurope.com"
 # ruby-pg segfault workaround
 # https://github.com/ged/ruby-pg/issues/311#issuecomment-561927000
 export PGGSSENCMODE="disable"
+
+# Fix GPG signing issue
+export GPG_TTY=$TTY
+
