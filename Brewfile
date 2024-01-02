@@ -1,4 +1,3 @@
-brew "ondir"
 brew "neovim"
 brew "wget"
 brew "chruby"
