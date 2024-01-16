@@ -12,10 +12,7 @@ echo "Installing Homebrew..."
 echo "Run brew bundle"
 brew bundle
 
-echo "Install vim plugs"
-nvim +PlugInstall +qa
-
-echo "Install nvm"
+echo "Install nvm & yarn"
 NVM_DIR=$HOME/.nvm
 [ ! -d "$NVM_DIR" ] && git clone https://github.com/nvm-sh/nvm.git ~/.nvm
 \. "$NVM_DIR/nvm.sh"
