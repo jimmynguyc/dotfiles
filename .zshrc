@@ -203,25 +203,6 @@ complete -o nospace -C /usr/local/bin/vault vault
 export GPG_TTY=$(tty)
 
 
-# OnDir
-cd()
-{
-	builtin cd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-}
-
-pushd()
-{
-	builtin pushd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-}
-
-popd()
-{
-	builtin popd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-}
-
-# Run ondir on login
-eval "`ondir /`"
-
 # Kitty
 autoload -Uz compinit
 compinit
