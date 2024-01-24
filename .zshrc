@@ -61,7 +61,7 @@ plugins=(colored-man-pages colorize rails ruby brew macos zsh-syntax-highlightin
 
 # User configuration
 
-export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/Users/jimmy/.rbenv/shims:/Users/jimmy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/opt/homebrew/opt/openssl@1.1/bin:/opt/homebrew/opt/openssl@3/bin:/sbin:/usr/local/opt/openssl/bin"
+export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/opt/homebrew/opt/openssl@1.1/bin:/opt/homebrew/opt/openssl@3/bin:/sbin:/usr/local/opt/openssl/bin"
 
 # Postgres
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
@@ -265,6 +265,10 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Folder md5sum
+md5sumf() {
+  find $1 -type f -exec md5sum {} + | awk '{print $1}' | sort | md5sum
+}
 
 
 # >>> conda initialize >>>
