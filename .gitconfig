@@ -9,7 +9,7 @@
   ci = commit
   st = status
   br = branch
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  hist = log --abbrev=7 --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   type = cat-file -t
   dump = cat-file -p
 	cp = cherry-pick
@@ -21,6 +21,8 @@
   prom = "! git pull --rebase origin $(git main-branch)"
   mt = mergetool
   rc = rebase --continue
+  wip = "! git add -A && git commit -m 'WIP'"
+  piw = "! git reset HEAD~1"
 [merge]
 	tool = opendiff
 [mergetool]
@@ -43,11 +45,11 @@
 	insteadOf = https://github.com/
 [commit]
 	verbose = true
-	gpgsign = false
+	gpgsign = true
+[rerere]
+	enabled = 1
 [filter "lfs"]
+	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-	required = true
-[rerere]
-	enabled = 1

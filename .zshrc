@@ -235,9 +235,9 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # ansible
 export ANSIBLE_NOCOWS=1
 
-# exa
-alias ls="exa"
-alias lst="exa --tree --level"
+# eza
+alias ls="eza"
+alias lst="eza --tree --level"
 
 # Unicode for less
 export LESSCHARSET=utf-8
@@ -249,12 +249,9 @@ alias fixarm64docker="export DOCKER_DEFAULT_PLATFORM=linux/amd64"
 fixarm64docker
 
 # Viaeurope Heroku
-alias viaprod="env HEROKU_APP=viaeurope-production"
-alias viastag="env HEROKU_APP=viaeurope-staging"
-alias viasand="env HEROKU_APP=viaeurope-sandbox"
-alias viaprodc="viaprod heroku run RAILS_LOG_LEVEL=debug bin/rails console"
-alias viastagc="viastag heroku run RAILS_LOG_LEVEL=debug bin/rails console"
-alias viasandc="viasand heroku run RAILS_LOG_LEVEL=debug bin/rails console"
+alias viaprod="env HEROKU_APP=viaeurope-production VIA_USER=jimmy@viaeurope.com"
+alias viastag="env HEROKU_APP=viaeurope-staging VIA_USER=jimmy@viaeurope.com"
+alias viasand="env HEROKU_APP=viaeurope-sandbox VIA_USER=jimmy@viaeurope.com"
 alias viaprodpsql="psql -h ec2-54-220-131-73.eu-west-1.compute.amazonaws.com -Ujimmy d2tbkkj2ess321"
 
 # NVM
@@ -318,3 +315,17 @@ export PGGSSENCMODE="disable"
 # Fix GPG signing issue
 export GPG_TTY=$TTY
 
+# YARN bin
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# build ruby 
+buildruby() {
+  ./autogen.sh && \
+    rm -fr build && \
+    mkdir build && \
+    pushd build && \
+    ../configure --prefix=${HOME}/.rubies/ruby-$1 && \
+    make && \
+    make install && \
+    popd
+}

@@ -12,6 +12,7 @@
     ~/.gitconfig: .gitconfig
     ~/.p10k.zsh: .p10k.zsh
     ~/.ackignore: .ackignore
+    ~/.yabairc: .yabairc
     ~/.config/:
       glob: true
       path: .config/**
