@@ -64,7 +64,7 @@ plugins=(colored-man-pages colorize rails ruby brew macos zsh-syntax-highlightin
 export PATH="/Users/jimmy/.cargo/bin:/Users/jimmy/.pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/opt/homebrew/opt/openssl@1.1/bin:/opt/homebrew/opt/openssl@3/bin:/sbin:/usr/local/opt/openssl/bin"
 
 # Postgres
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
 # Initialize Homebrew env
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -329,3 +329,16 @@ buildruby() {
     make install && \
     popd
 }
+
+# watch & run spec via nodemon
+function run_after_save {
+  prefix=$1
+  file=$2
+  line=$3
+  if [ -z "$line" ]; then
+    nodemon -x "$prefix $file" -w "$file"
+  else
+    nodemon -x "$prefix $file:$line" -w "$file"
+  fi
+}
+alias wr='run_after_save "clear && bundle exec rspec"'

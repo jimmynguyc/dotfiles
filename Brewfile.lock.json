@@ -1217,6 +1217,10 @@
             }
           }
         }
+      },
+      "skhd": {
+        "version": "0.3.9",
+        "bottle": false
       }
     },
     "tap": {
@@ -1247,6 +1251,18 @@
         "version": "0.11.4",
         "options": {
           "full_name": "shortcat"
+        }
+      },
+      "whichspace": {
+        "version": "0.3.2",
+        "options": {
+          "full_name": "whichspace"
+        }
+      },
+      "spaceid": {
+        "version": "1.4",
+        "options": {
+          "full_name": "spaceid"
         }
       }
     }

@@ -4,3 +4,4 @@
 --
 
 vim.g.autoformat = false
+vim.opt.colorcolumn = "80,150"

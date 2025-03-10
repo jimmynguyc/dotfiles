@@ -13,6 +13,7 @@
     ~/.p10k.zsh: .p10k.zsh
     ~/.ackignore: .ackignore
     ~/.yabairc: .yabairc
+    ~/.skhdrc: .skhdrc
     ~/.config/:
       glob: true
       path: .config/**

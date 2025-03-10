@@ -16,12 +16,12 @@ local servers = {
 
   rubocop = {
     -- See: https://docs.rubocop.org/rubocop/usage/lsp.html
-    cmd = { os.getenv("HOME") .. "/.gem/ruby/" .. os.getenv("RUBY_VERSION") .. "/bin/rubocop", "--lsp" },
+    cmd = { (os.getenv("HOME") or "") .. "/.gem/ruby/" .. (os.getenv("RUBY_VERSION") or "") .. "/bin/rubocop", "--lsp" },
     root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
   },
 
   ruby_lsp = {
-    cmd = { os.getenv("HOME") .. "/.gem/ruby/" .. os.getenv("RUBY_VERSION") .. "/bin/ruby-lsp" },
+    cmd = { (os.getenv("HOME") or "") .. "/.gem/ruby/" .. (os.getenv("RUBY_VERSION") or "") .. "/bin/ruby-lsp" },
     root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
     on_init = function(client, _)
       if client.supports_method "textDocument/semanticTokens" then
