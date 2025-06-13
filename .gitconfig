@@ -70,4 +70,4 @@
   rbc = rebase --continue
   wip = "! git add -A && git commit -m 'WIP'"
   piw = "! git reset HEAD~1"
-  hist = log --abbrev=7 --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  hist = log --abbrev=7 --pretty=format:\"%h %ad %<(8,trunc)%an | %s%d [%an]\" --graph --date=short

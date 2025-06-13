@@ -190,11 +190,6 @@ alias kai="cat <<EOF | kubectl apply -f -"
 # Ruby Webrick
 alias webrick="ruby -run -ehttpd"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # zsh options
 unsetopt AUTO_CD
 
@@ -248,14 +243,12 @@ alias fixnode17ssl="export NODE_OPTIONS=--openssl-legacy-provider"  # node17 iss
 alias fixarm64docker="export DOCKER_DEFAULT_PLATFORM=linux/amd64"
 fixarm64docker
 
-# Viaeurope Heroku
-alias viaprod="env HEROKU_APP=viaeurope-production VIA_USER=jimmy@viaeurope.com"
-alias viastag="env HEROKU_APP=viaeurope-staging VIA_USER=jimmy@viaeurope.com"
-alias viasand="env HEROKU_APP=viaeurope-sandbox VIA_USER=jimmy@viaeurope.com"
-alias viaprodpsql="psql -h ec2-54-220-131-73.eu-west-1.compute.amazonaws.com -Ujimmy d2tbkkj2ess321"
+# Viaeurope
+alias viaprod="AWS_PROFILE=viaeurope-production bin/kamal app exec -d production"
+alias viastag="AWS_PROFILE=viaeurope-production bin/kamal app exec -d staging"
+alias viastag1="AWS_PROFILE=viaeurope-production bin/kamal app exec -d staging-1"
+alias viastag2="AWS_PROFILE=viaeurope-production bin/kamal app exec -d staging-2"
 
-# NVM
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Powerlevel10k Prompt
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
@@ -342,3 +335,7 @@ function run_after_save {
   fi
 }
 alias wr='run_after_save "clear && bundle exec rspec"'
+
+# direnv hook
+eval "$(direnv hook zsh)"
+
