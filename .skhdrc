@@ -11,13 +11,8 @@ alt - j : yabai -m window --focus west
 # rotate layout clockwise
 ctrl + alt - r : yabai -m space --rotate 270
 
-# flip along y-axis
-ctrl + alt - y : yabai -m space --mirror y-axis
-
-# flip along x-axis
-ctrl + alt - x : yabai -m space --mirror x-axis
-
 # toggle window float <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
+# 0x2B = ,
 ctrl + alt - 0x2B : yabai -m window --toggle float --grid 1:8:1:1:6:1
 
 
@@ -49,15 +44,15 @@ alt + shift - l : yabai -m window --warp east
 alt + shift - j : yabai -m window --warp west
 
 # move window to space #
-ctrl + alt - 1 : yabai -m window --space 1;
-ctrl + alt - 2 : yabai -m window --space 2;
-ctrl + alt - 3 : yabai -m window --space 3;
-ctrl + alt - 4 : yabai -m window --space 4;
-ctrl + alt - 5 : yabai -m window --space 5;
-ctrl + alt - 6 : yabai -m window --space 6;
-ctrl + alt - 7 : yabai -m window --space 7;
-ctrl + alt - 8 : yabai -m window --space 8;
-ctrl + alt - 9 : yabai -m window --space 9;
+ctrl + alt - 1 : yabai -m window --space 1 --focus
+ctrl + alt - 2 : yabai -m window --space 2 --focus
+ctrl + alt - 3 : yabai -m window --space 3 --focus
+ctrl + alt - 4 : yabai -m window --space 4 --focus
+ctrl + alt - 5 : yabai -m window --space 5 --focus
+ctrl + alt - 6 : yabai -m window --space 6 --focus
+ctrl + alt - 7 : yabai -m window --space 7 --focus
+ctrl + alt - 8 : yabai -m window --space 8 --focus
+ctrl + alt - 9 : yabai -m window --space 9 --focus
 
 
 # -- Starting/Stopping/Restarting Yabai --

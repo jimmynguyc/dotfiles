@@ -15,43 +15,22 @@ local servers = {
   },
 
   rubocop = {
-    -- See: https://docs.rubocop.org/rubocop/usage/lsp.html
-    cmd = { (os.getenv("HOME") or "") .. "/.gem/ruby/" .. (os.getenv("RUBY_VERSION") or "") .. "/bin/rubocop", "--lsp" },
-    root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
+    cmd = { 'bundle', 'exec', 'rubocop', '--lsp' },
   },
 
   ruby_lsp = {
-    cmd = { (os.getenv("HOME") or "") .. "/.gem/ruby/" .. (os.getenv("RUBY_VERSION") or "") .. "/bin/ruby-lsp" },
-    root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
-    on_init = function(client, _)
-      if client.supports_method "textDocument/semanticTokens" then
-        client.server_capabilities.semanticTokensProvider = nil
-      end
-    end
-  },
-}
-
---[[
-  solargraph = {
-    cmd = { os.getenv("HOME") .. "/.gem/ruby/" .. os.getenv("RUBY_VERSION") .. "/bin/solargraph", "stdio" },
-    root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
+    cmd = { 'bundle', 'exec', 'ruby-lsp' },
     init_options = {
-      formatting = false,
-    },
-    settings = {
-      solargraph = {
-        autoformat = false,
-        formatting = false,
-        completion = true,
-        diagnostic = false,
-        folding = true,
-        references = true,
-        rename = true,
-        symbols = true,
+      addonSettings = {
+        ["Ruby LSP Rails"] = {
+          enablePendingMigrationsPrompt = false,
+        },
       },
-    },
+    }
   },
-  --]]
+
+  solargraph = false,
+}
 
 return {
   {

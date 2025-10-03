@@ -123,8 +123,7 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias getreleases="git br --all | grep -E 'origin\/r[0-9]+'"
 alias t='tmux'
 alias tns='tmux new-session -t'
-alias kali="docker run -t -i kalilinux/kali /bin/bash"
-alias kalimsf="docker run -t -i kalilinux/msf /bin/bash"
+alias kali="docker run -it --mount source=kali_data,target=/root --cap-add=NET_RAW --cap-add=NET_ADMIN kalilinux/kali-rolling:mycustom /bin/bash"
 alias p='pomo'
 alias tailf='tail -f'
 alias c='code'
@@ -244,11 +243,9 @@ alias fixarm64docker="export DOCKER_DEFAULT_PLATFORM=linux/amd64"
 fixarm64docker
 
 # Viaeurope
-alias viaprod="AWS_PROFILE=viaeurope-production bin/kamal app exec -d production"
-alias viastag="AWS_PROFILE=viaeurope-production bin/kamal app exec -d staging"
-alias viastag1="AWS_PROFILE=viaeurope-production bin/kamal app exec -d staging-1"
-alias viastag2="AWS_PROFILE=viaeurope-production bin/kamal app exec -d staging-2"
-
+alias refreshstaging="bin/kamal app exec --detach --primary --destination staging bin/rails 'staging:refresh[viaeurope-main-staging,true]'"
+alias refreshstaging1="bin/kamal app exec --detach --primary --destination staging-1 bin/rails 'staging:refresh[viaeurope-main-staging-1,true]'"
+alias refreshstaging2="bin/kamal app exec --detach --primary --destination staging-2 bin/rails 'staging:refresh[viaeurope-main-staging-2,true]'"
 
 # Powerlevel10k Prompt
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
@@ -278,22 +275,6 @@ unset __conda_setup
 
 # xelatex
 export PATH="/usr/local/texlive/2021basic/bin/universal-darwin/:$PATH"
-
-# kali docker
-alias kali="docker run -it mykali/with-metapackage"
-
-curltime() {
-  curl -w @- -o /dev/null -s "$@" <<'EOF'
-      time_namelookup:  %{time_namelookup}s\n
-         time_connect:  %{time_connect}s\n
-      time_appconnect:  %{time_appconnect}s\n
-     time_pretransfer:  %{time_pretransfer}s\n
-        time_redirect:  %{time_redirect}s\n
-   time_starttransfer:  %{time_starttransfer}s\n
-                      -----------\n
-           time_total:  %{time_total}s\n
-EOF
-}
 
 # rubocop
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -334,8 +315,20 @@ function run_after_save {
     nodemon -x "$prefix $file:$line" -w "$file"
   fi
 }
-alias wr='run_after_save "clear && bundle exec rspec"'
+alias rspecw='run_after_save "clear && bundle exec rspec"'
 
 # direnv hook
 eval "$(direnv hook zsh)"
 
+# nodenv
+eval "$(nodenv init - zsh)"
+
+# bun completions
+[ -s "/Users/jimmy/.bun/_bun" ] && source "/Users/jimmy/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# yabai
+alias fixyabai="yabai --start-service && yabai --restart-service && sudo yabai --load-sa"
