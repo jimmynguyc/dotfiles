@@ -1,3 +1,11 @@
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Fortune + cowsay
+fortune_cowsay() {
+  fortune | cowsay -r -C 
+}
+fortune_cowsay
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -124,6 +132,7 @@ alias getreleases="git br --all | grep -E 'origin\/r[0-9]+'"
 alias t='tmux'
 alias tns='tmux new-session -t'
 alias kali="docker run -it --mount source=kali_data,target=/root --cap-add=NET_RAW --cap-add=NET_ADMIN kalilinux/kali-rolling:mycustom /bin/bash"
+alias msfc="/opt/metasploit-framework/bin/msfconsole"
 alias p='pomo'
 alias tailf='tail -f'
 alias c='code'
@@ -219,9 +228,6 @@ esac
 # Force xterm-color on various stuffs
 alias ssh='TERM=xterm-color ssh'
 alias vagrant='TERM=xterm-color vagrant'
-
-# Fortune + cowsay
-#fortune | cowsay
 
 # homebrew
 export HOMEBREW_NO_AUTO_UPDATE=1
@@ -332,3 +338,10 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # yabai
 alias fixyabai="yabai --start-service && yabai --restart-service && sudo yabai --load-sa"
+export PATH="$HOME/.local/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/jimmy/.antigravity/antigravity/bin:$PATH"
+
+# Clawbot Relay
+alias clawdbotrelay="ssh -vv -N -o ExitOnForwardFailure=yes -L 18792:127.0.0.1:18792 jimmys-desktop"
