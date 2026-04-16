@@ -1,0 +1,21 @@
+# Unbinds
+keybind = super+ctrl+arrow_right=unbind
+keybind = super+ctrl+arrow_down=unbind
+keybind = super+ctrl+arrow_left=unbind
+keybind = super+ctrl+arrow_up=unbind
+keybind = super+alt+arrow_up=unbind
+keybind = super+alt+arrow_right=unbind
+keybind = super+alt+arrow_left=unbind
+keybind = super+alt+arrow_down=unbind
+keybind = super+bracket_left=unbind
+keybind = super+bracket_right=unbind
+
+# New bindings
+keybind = super+ctrl+i=resize_split:up,10
+keybind = super+ctrl+k=resize_split:down,10
+keybind = super+ctrl+j=resize_split:left,10
+keybind = super+ctrl+l=resize_split:right,10
+keybind = super+alt+i=goto_split:up
+keybind = super+alt+k=goto_split:down
+keybind = super+alt+j=goto_split:left
+keybind = super+alt+l=goto_split:right

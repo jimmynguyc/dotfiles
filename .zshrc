@@ -206,18 +206,6 @@ complete -o nospace -C /usr/local/bin/vault vault
 export GPG_TTY=$(tty)
 
 
-# Kitty
-autoload -Uz compinit
-compinit
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
-alias icat="kitty +kitten icat"
-alias dif="kitty +kitten diff"
-alias bcast="kitty +kitten broadcast"
-#alias s="alias s=kitty +kitten ssh"
-alias cb="kitty +kitten clipboard"
-
-
 case $TERM in
     xterm*)
         precmd () {print -Pn "\e]0;%n@%m: %~\a"}
@@ -344,4 +332,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/Users/jimmy/.antigravity/antigravity/bin:$PATH"
 
 # Clawbot Relay
-alias clawdbotrelay="ssh -vv -N -o ExitOnForwardFailure=yes -L 18792:127.0.0.1:18792 jimmys-desktop"
+alias clawrelay="ssh -vv -N -o ExitOnForwardFailure=yes -L 18792:127.0.0.1:18792 jimmys-desktop"
+alias clawgateway="ssh -vv -N -o ExitOnForwardFailure=yes -L 18789:127.0.0.1:18789 jimmys-desktop"
+
+# OpenJDK
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
