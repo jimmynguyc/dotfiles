@@ -16,6 +16,7 @@
 [core]
 	excludesfile = /Users/jimmy/.gitignore_global
 	autocrlf = input
+	pager = delta
 [pull]
 	ff = only
 	rebase = true
@@ -73,3 +74,8 @@
   hist = log --abbrev=7 --pretty=format:\"%h %ad %<(8,trunc)%an | %s%d [%an]\" --graph --date=short
 [gpg]
 	format = ssh
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	syntax-theme = Dracula
+	navigate = true
