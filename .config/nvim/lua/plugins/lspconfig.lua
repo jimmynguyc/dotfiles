@@ -35,10 +35,11 @@ local servers = {
 return {
   {
     "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
     opts = {
-      ---@type lspconfig.options
       servers = servers,
+      keys = {
+        { "<C-k>", false, mode = "i"}
+      }
     },
   },
 }

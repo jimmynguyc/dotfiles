@@ -94,12 +94,10 @@ export GIT_EDITOR='nvim'
 # chruby
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby_auto
 
 # pyenv
 eval "$(pyenv init -)"
-
-# pipenv
-eval "$(_PIPENV_COMPLETE=zsh_source pipenv)"
 
 # composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
@@ -332,8 +330,69 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/Users/jimmy/.antigravity/antigravity/bin:$PATH"
 
 # Clawbot Relay
-alias clawrelay="ssh -vv -N -o ExitOnForwardFailure=yes -L 18792:127.0.0.1:18792 jimmys-desktop"
+alias clawrelay="ssh -vv -N -o ExitOnForwardFailure=yes -L 18791:127.0.0.1:18791 jimmys-desktop"
 alias clawgateway="ssh -vv -N -o ExitOnForwardFailure=yes -L 18789:127.0.0.1:18789 jimmys-desktop"
 
 # OpenJDK
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# Codex multi account
+[ -f ~/.codex-accounts/multi_account.sh ] && source ~/.codex-accounts/multi_account.sh
+
+# Git Worktree
+gwt() {
+  local branch="$1"
+  local common_dir
+  local main_worktree
+  local target
+  local worktree
+
+  if [[ -z "$branch" ]]; then
+    echo "Usage: gwt <branch>"
+    return 1
+  fi
+
+  common_dir="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)" || {
+    echo "gwt: not inside a Git repository"
+    return 1
+  }
+  main_worktree="${common_dir:h}"
+  target="${main_worktree:h}/worktrees/$branch"
+
+  # Go to the worktree if this branch is already checked out
+  worktree="$(
+    git worktree list --porcelain |
+      awk -v branch="refs/heads/$branch" '
+        /^worktree / { path = substr($0, 10) }
+        $0 == "branch " branch { print path; exit }
+    '
+  )"
+
+  if [[ -n "$worktree" ]]; then
+    target="$worktree"
+  else
+    # Use the existing local branch or create it
+    if git show-ref --verify --quiet "refs/heads/$branch"; then
+      git worktree add "$target" "$branch" || return
+    else
+      git worktree add -b "$branch" "$target" || return
+    fi
+
+    cp "$main_worktree/.env" "$target"
+    cp "$main_worktree"/config/credentials/*.key "$target/config/credentials"
+  fi
+
+  cd -- "$target" || return
+
+  if [[ -n "$TMUX" ]]; then
+    tmux rename-window -- "${target:t}"
+  fi
+}
+
+gwtdone() {
+  local worktree
+
+  worktree="$(git worktree list --porcelain | sed -n '1s/^worktree //p')"
+  git worktree remove .
+  cd -- "$worktree"
+}

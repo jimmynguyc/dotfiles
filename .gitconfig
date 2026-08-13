@@ -7,11 +7,11 @@
 	email = jimmynguyc@gmail.com
 	signingkey = /Users/jimmy/.ssh/id_rsa_personal.pub
 [merge]
-	tool = opendiff
-  conflictstyle = zdiff3 
+	tool = nvimdiff
+	conflictstyle = diff3
 [mergetool]
 	keepBackup = false
-  prompt = false
+	prompt = false
   trustExitCode = true
 [core]
 	excludesfile = /Users/jimmy/.gitignore_global
@@ -77,5 +77,5 @@
 [interactive]
 	diffFilter = delta --color-only
 [delta]
-	syntax-theme = Dracula
-	navigate = true
+	line-numbers = true
+	hunk-header-style = omit
